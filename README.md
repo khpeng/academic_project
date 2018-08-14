@@ -1,4 +1,4 @@
-# Academic_project
+# academic_project
 
 <pre>Data Scraping                          (Ipython Programing) </pre>
 <pre>Chat Room                              (Java Socket Programing)</pre> 
