@@ -1,0 +1,2 @@
+1. SD_CS_HIGH  	Deselect SD Card: ChipSelect pin high. 
+SD_CS_LOW  Select SD Card: ChipSelect pin low. 

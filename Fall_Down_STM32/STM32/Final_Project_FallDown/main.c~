@@ -1,0 +1,221 @@
+/* main.c ---
+*
+* Filename: main.c
+* Description:
+* Author: Kezhao(zhaok)  Yifan Liu(liuyifa)
+* Maintainer:
+* Created: Thu Jan 10 11:23:43 2013
+/* Code: */
+
+#include <stm32f30x.h> // Pull in include files for F30x standard drivers
+#include <f3d_uart.h>
+#include <f3d_gyro.h>
+#include <f3d_user_btn.h>
+#include <f3d_i2c.h>
+#include <f3d_lcd_sd.h>
+#include <f3d_accel.h>
+#include <f3d_mag.h>
+#include <f3d_nunchuk.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#define TIMER 20000
+
+
+float absFloat(float value) {
+  if(value < 0) return(value*-1);
+  else return value;
+}
+
+//function that used when ball is on the board.
+void stay_on_bar(int *x_axis, int *y_axis, int *bar_x, int *bar_y, int* bool, int *reverse, nunchuk_t nun){
+  if((*x_axis>*bar_x-5 && *x_axis<*bar_x+40) && (*bar_y-*y_axis>=0 && *bar_y-*y_axis<=10)){
+    //printf("first branch");
+    //printf("x_axis: %d; bar_y-y_axis: %d \n", *x_axis, *bar_y-*y_axis);
+    f3d_lcd_drawString(*bar_x-5, *bar_y, "o", WHITE, WHITE);
+    f3d_lcd_drawString(*bar_x+40, *bar_y, "o", WHITE, WHITE);
+    *y_axis=*bar_y-5;
+    *bool = 1;
+    
+    printf("fuck\n");
+    printf("%d", *reverse);
+    if (*reverse == 1){
+      if (nun.c==0x01){//Read data from nunchuck. control the ball moving left or right.
+	printf("I am Here");
+
+	*x_axis = *x_axis - 3;
+      }
+      else if (nun.z==0x01) {
+	*x_axis = *x_axis + 3;
+      }   
+    }
+  } 
+}
+
+int main(void) {
+  f3d_uart_init(); 
+  f3d_i2c1_init();  
+  f3d_accel_init();
+  f3d_mag_init();
+  f3d_gyro_init();
+  f3d_lcd_init();
+  f3d_nunchuk_init(); // initial nunchuk
+
+  setvbuf(stdin, NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
+  setvbuf(stderr, NULL, _IONBF, 0);
+   
+
+  f3d_lcd_fillScreen2(WHITE);
+
+  int board_height = 155;
+  int board_width = 88;
+
+  f3d_lcd_bar(0, 0, 127, 6, BLACK);
+
+  nunchuk_t nun;  // declare nunchuk
+
+  //variable neede for moving bars.
+  int index_speed = 0;
+  float speed[] = {1, 2, 3, 4}; 
+  int bar1 = 40;
+  int bar2 = 80;
+  int bar3 = 120;
+  int bar4 = 155;
+  int random1 = rand() % 88;
+  int random2 = rand() % 88;
+  int random3 = rand() % 88;
+  int random4 = rand() % 88;
+  int reverse1 = 0;
+  int reverse2 = 0;
+  int reverse3 = 0;
+  int reverse4 = 0;
+  int number_of_floor = 100;
+  //variable needed for dot.
+  int x_axis = 7;
+  int y_axis = 7;
+  int bool;//determines whether ball is stayed on the board.
+
+  
+ 
+  while (1){
+    //implementation of the moving bars.
+    //first bar
+    f3d_lcd_bar(random1, bar1+speed[index_speed], random1+40, bar1+speed[index_speed]+5, WHITE);
+    f3d_lcd_bar(random1, bar1+1, random1+40, bar1+5, BLACK);
+    //second bar
+    f3d_lcd_bar(random2, bar2+speed[index_speed], random2+40, bar2+speed[index_speed]+5, WHITE);
+    f3d_lcd_bar(random2, bar2+1, random2+40, bar2+5, BLACK);
+    //third bar
+    f3d_lcd_bar(random3, bar3+speed[index_speed], random3+40, bar3+speed[index_speed]+5, WHITE);
+    f3d_lcd_bar(random3, bar3+1, random3+40, bar3+5, BLACK);
+    //fourth bar
+    f3d_lcd_bar(random4, bar4+speed[index_speed], random4+40, bar4+speed[index_speed]+5, WHITE);
+    f3d_lcd_bar(random4, bar4+1, random4+40, bar4+5, BLACK);
+
+    bar1 = bar1 - speed[index_speed];
+    if (bar1<=0) {
+      //reverse that will reverse the direct of the ball, if it is 0, do NOT reverse, otherwise, reverse.
+      reverse1 = rand() % 2;
+      bar1=rand() % 10 + 155;
+      random1 = rand() % 88;
+      number_of_floor = number_of_floor - 1;
+    }
+
+    bar2=bar2-speed[index_speed];
+    if (bar2<=0) {
+      //reverse that will reverse the direct of the ball, if it is 0, do NOT reverse, otherwise, reverse.
+      reverse2 = rand() % 2;
+      bar2=rand() % 10 + 165;
+      random2 = rand() % 88;
+      number_of_floor = number_of_floor - 1;
+    }
+    bar3=bar3-speed[index_speed];
+    if (bar3<=0) {
+      //reverse that will reverse the direct of the ball, if it is 0, do NOT reverse, otherwise, reverse.
+      reverse3 = rand() % 2;
+      bar3=rand() % 10 + 175; 
+      random3 = rand() % 88;
+      number_of_floor = number_of_floor - 1;
+    }
+
+    bar4=bar4-speed[index_speed];
+    if (bar4<=0) {
+      //reverse that will reverse the direct of the ball, if it is 0, do NOT reverse, otherwise, reverse.
+      reverse4 = rand() % 2;
+      bar4=rand() % 10 + 185; 
+      random4 = rand() % 88;
+      number_of_floor = number_of_floor - 1; 
+    }
+    
+    
+    if (number_of_floor > 80){
+      index_speed = 1;
+    } 
+    else if (number_of_floor > 60) {
+      index_speed = 2;
+    }
+    else {
+      index_speed = 3;
+    }
+    //end of implementation of the moving bars.
+    //    delay(20);
+    //implementation of the dot.
+    f3d_nunchuk_read(&nun);
+
+
+    if (reverse1 == 0 || reverse 2 == 0 || reverse3 ==0 || reverse4 == 0){ 
+      if (nun.c==0x01){//Read data from nunchuck. control the ball moving left or right.
+	x_axis = x_axis + 3;
+      }
+      else if (nun.z==0x01) {
+	x_axis = x_axis - 3;
+      }
+    }
+
+
+    //reset bool to 0. 
+    bool = 0;
+    /*(x_axis>random1-5 && x_axis<random1+40)*/ 
+    //if bool = 0, means ball is stay on the bar. then run to function. if one of them run. bool will be set to 1. Thus, only one will be run.
+    stay_on_bar(&x_axis, &y_axis, &random1, &bar1, &bool, &reverse1, nun);
+    stay_on_bar(&x_axis, &y_axis, &random2, &bar2, &bool, &reverse2, nun);
+    stay_on_bar(&x_axis, &y_axis, &random3, &bar3, &bool, &reverse3, nun);
+    stay_on_bar(&x_axis, &y_axis, &random4, &bar4, &bool, &reverse4, nun);
+    //if bool = 0, means the ball will keep falling. 
+    if (bool == 0) {//speed of tha ball.
+      y_axis = y_axis +2;
+    }
+    
+    //printf("%d", x_axis);
+    //refresh the falling trail of dot.
+    f3d_lcd_drawString(x_axis-5, y_axis-2, "o", WHITE, WHITE);
+    f3d_lcd_drawString(x_axis+5, y_axis-2, "o", WHITE, WHITE);
+    f3d_lcd_drawString(x_axis, y_axis-2, "o", WHITE, WHITE);
+    //stay_on_bar function will refresh the rising trail of dot as WHITE. 
+    
+
+    f3d_lcd_drawString_DOT(x_axis, y_axis, "o", BLACK, WHITE);
+
+    
+    //end of implementation of the dot.
+    
+
+    //implementation of end_game.
+    if ((y_axis > 160) || (y_axis <= 7)){
+      break;
+    }
+  }
+  f3d_lcd_drawString(0, 0, "game over", WHITE, BLACK);
+  return 0;
+} 
+
+
+#ifdef USE_FULL_ASSERT
+  void assert_failed(uint8_t* file, uint32_t line) {
+    /* Infinite loop */
+    /* Use GDB to find out why we're here */
+    while (1);
+  }
+#endif
+

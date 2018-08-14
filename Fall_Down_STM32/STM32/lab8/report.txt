@@ -1,0 +1,22 @@
+// Shengwei Peng(pengs)
+
+1. The pins and nunchuk already initialized with the accelerometer/magnetometer. So, I am able to add the nunchuk without intializing anything.
+
+
+2. In the i2c1_read function, it may send different number of bytes. Therefore, there is a loop to check how many bytes are going to be sent. in the nunchuk, it is a fixed 6 bytes to send.
+    
+3.   unsigned char jx;   joystick x-axis
+  unsigned char jy;    joystick y-axis
+  unsigned short ax;   accelerometer x-axis
+  unsigned short ay;   accelerometer y-axis
+  unsigned short az;   accelerometer z-axis
+  unsigned char c;     c trigger buttons
+  unsigned char z;     z trigger buttons
+
+4.  In this code, each case represent a button pressed:
+    Case 2: z pressed, but not c
+    Case 1: c pressed, but not z
+    Case 0: Both c and z are pressed
+    Case 3: default case; c and z are not pressed
+
+Diffculties: the difficulties in this lab would be the debug part for me. I still don't like use gdb to debug. It takes a lot of time to do it. And I always get into a time out by entered a wrong command and I need to restart the whole program.

@@ -1,0 +1,16 @@
+Shengwei Peng (pengs)
+
+1. SD_CS_HIGH  	Deselect SD Card: ChipSelect pin high. 
+SD_CS_LOW  Select SD Card: ChipSelect pin low. 
+
+2.As I see it, by using the delay() function, the delay time  is more accurate than the delay loop  since it may take time to run the loop, which mean the total time delay would be the time of running loop and time of delay.
+
+
+3. The DMA is more effiecency, while the software polling has three limitations. First limitation is that the processor is tied up during the transfer and cannot perform other tasks. Second, the actual transfer rate is lower than the underlying hardware permit. And third, it is difficult to achieve tight timing bounds.
+
+
+4. Corruption may cause file lost if it doesn't know hwrere the data is located.
+
+5. the bits are different. And FAT32 allows allocation granularity (approximately 4 million allocation units per volume). FAT32 allows the root directory to grow (FAT16 holds a maximum of 512 entries, and the limit can be even lower due to the use of long file names in the root folder).
+
+Difficulties: We were stuck in the draw function part for a long time. We used first version of colorChanger function. However, the program do not draw image. So, we changed the method. Also, the change of orientation of the image.

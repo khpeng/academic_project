@@ -1,0 +1,11 @@
+2016-10-05T19:24:18 INFO src/stlink-common.c: Loading device parameters....
+2016-10-05T19:24:18 INFO src/stlink-common.c: Device connected is: F3 device, id 0x10036422
+2016-10-05T19:24:18 INFO src/stlink-common.c: SRAM size: 0xa000 bytes (40 KiB), Flash: 0x40000 bytes (256 KiB) in pages of 2048 bytes
+2016-10-05T19:24:18 INFO src/stlink-common.c: Attempting to write 49012 (0xbf74) bytes to stm32 address: 134217728 (0x8000000)
+Flash page at addr: 0x08000000 erasedFlash page at addr: 0x08000800 erasedFlash page at addr: 0x08001000 erasedFlash page at addr: 0x08001800 erasedFlash page at addr: 0x08002000 erasedFlash page at addr: 0x08002800 erasedFlash page at addr: 0x08003000 erasedFlash page at addr: 0x08003800 erasedFlash page at addr: 0x08004000 erasedFlash page at addr: 0x08004800 erasedFlash page at addr: 0x08005000 erasedFlash page at addr: 0x08005800 erasedFlash page at addr: 0x08006000 erasedFlash page at addr: 0x08006800 erasedFlash page at addr: 0x08007000 erasedFlash page at addr: 0x08007800 erasedFlash page at addr: 0x08008000 erasedFlash page at addr: 0x08008800 erasedFlash page at addr: 0x08009000 erasedFlash page at addr: 0x08009800 erasedFlash page at addr: 0x0800a000 erasedFlash page at addr: 0x0800a800 erasedFlash page at addr: 0x0800b000 erasedFlash page at addr: 0x0800b800 erased2016-10-05T19:24:19 INFO src/stlink-common.c: Finished erasing 24 pages of 2048 (0x800) bytes
+2016-10-05T19:24:19 INFO src/stlink-common.c: Starting Flash write for VL/F0/F3 core id
+2016-10-05T19:24:19 INFO src/stlink-common.c: Successfully loaded flash loader in sram
+
+  0/23 pages written  1/23 pages written  2/23 pages written  3/23 pages written  4/23 pages written  5/23 pages written  6/23 pages written  7/23 pages written  8/23 pages written  9/23 pages written 10/23 pages written 11/23 pages written 12/23 pages written 13/23 pages written 14/23 pages written 15/23 pages written 16/23 pages written 17/23 pages written 18/23 pages written 19/23 pages written 20/23 pages written 21/23 pages written 22/23 pages written 23/23 pages written2016-10-05T19:24:21 INFO src/stlink-common.c: Starting verification of write complete
+2016-10-05T19:24:22 INFO src/stlink-common.c: Flash written and verified! jolly good!
+

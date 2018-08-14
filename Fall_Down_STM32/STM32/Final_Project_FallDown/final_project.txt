@@ -1,0 +1,27 @@
+final_project.txt
+
+Shengwei Peng, Yifan Liu
+Team Project: Fall Down
+
+
+The concept of our game:
+    A ball is falling down from the top of the screen and there will be 4 bars set in random position. When the ball hitted the bar, it will stay on the bar. Every time a bar is disappear, a new bar will be randomly created from the bottom of the screen. Every time the ball passed a bar, the score will increased by 1 point. To win the game, player have to score 100 points, which means passed 100 bar. However, the requrement of winning can be changed by modified the variable from the code. 
+	
+
+
+Instruction/Description of core funitionailty: 
+1. By getting data from nunchunk, we can use joystick to control the ball movement, left or right. 
+2. Every time the ball passed a bar, the score will increased by 1 point. (Every bar will have a boolean value, if ball passed a bar, the program checks the boolean value. if its value showed it never been visited then score increased.)
+3. The bar speed will increased every 20 points scored.
+4. The red bar will have reverse direction for the ball control. ( When the ball on the red bar, the calculation of the new x-axis of the ball will changed. Subtraction will be replaced by addtion. Otherwise, addtion will replaced by subtraction)
+5. Music will played when game ended, both win or lose. Also, score information will be showed. (Read music file from SD card)
+6. Bar will be created in random position. 
+7. Before the game start, rules will be showed.
+8. When game ended, instead of hit the reset button, user can hit the c button on the joystick to replay the game. (recursion)
+9. Score will be keep tracking on the top right corner. 
+10. During the game, player can pause the game by hitting the user button. (Read data from user button)
+11. Generate random number by getting gyro data from the nunchunk and setting it as the seed value. (Functioning as srandom in C)
+12. Ball position will be set on the far right side, if the ball go out of the screen from far left side. By contrast, ball position will be set on the far left side, if the ball go out of the screen from far right side.
+
+Task Breakdown:
+	Since we were in the different team before lab 10, each one of us have some unique or better thought on different part of our code while we were coding, such as I have better way to write the function when ball stay on the bar, he has better idea while creating new bar and etc. So, it's hard to tell how the task breakdown in detail. Anyways, we did the program together, neither one of us missed a meet-up.

@@ -1,0 +1,13 @@
+1. the significance of the peripheral base address is that it is a fixed address and it can used by the STM32 firmware which provides peripheral specific commands to enable a DMA transaction. it points to.&(SPIx->DR).
+
+2.  It enable the incrementing so all data will not read/written from a single DR register. It will change the address to the next avalible data slot.
+
+3. So, the program will automatic reset if it recieve flag.
+
+4.  For transfers of less than 4 bytes, I think is the reason for not using the xchng_datablock functions is that it would wasted the unused space.
+
+5. it is important for the DMA controller and the audio player to work on differnt portions of Audiobuf because it will make the code more efficent.
+
+Difficulties : The nunchunk_init() really got us in trouble. First, we were putting it in a init() function and call it in main() function. However, it wouldn't pass the nunchunk_init(). And we move all the initialization from the init() function to main() fucntion, Then, it works.(have no idea why)
+
+ 

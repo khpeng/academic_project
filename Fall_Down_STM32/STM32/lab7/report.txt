@@ -1,0 +1,32 @@
+//// Shengwei Peng (pengs) Lab7
+
+
+1. There are 14 pins. 2.5 V are required to power the accelerometer/magnetometer. The accelerometer/magnetometer is sitting
+on the top right corner, which is a small black chip like.
+
+Pin description:
+Pin#  Name 
+1  	Vdd_IO  
+2   SCL  
+3   SDA   
+4   INT2 
+5   INT1 
+6   C1  
+7   GND 
+8   Reserved 
+9   DRDY 
+10  Reserved  
+11  Reserved 
+12  SETP  
+13  SETC  
+14  Vdd 
+
+2. we write to the accelerometer before we can read from them because we need to enable the x, y and z axis first. Then we f3d_i2c1_write functions implement the protocol used to communicate across the I2C link. Then update the data and make it lie with certian form. So, the machine can easier to understand and run.
+we write to the magnetometer before we can read from them because we set the sensor and converting data into certain form to make the machine easier to undersstand and run.
+
+3. It seems like it convert raw_data to accel_data, which is a float form and make it easier understand by the accelerometer.
+
+4. If the handheld device is tilted, then the pitch and roll angles are not equal to 0°, where the pitch and roll can be measured by a 3-axis accelerometer. Therefore, the magnetic sensor measurements XM, YM, and ZM need to be compensated to obtain Xh and Yh. 
+
+Difficulies: We were having trouble with the calculation of the heading since we forgot to use f3d_mag_read() function to convert the data and not able to get yH and xH. 
+Also, we were having problem with the last step the compass part. We were confused since there is no specific instruction given. So, we looked it up online for the compass part. It ended up that we made a mistake. However, we have chagned the compass displaying method into our own way at the end of the lab.

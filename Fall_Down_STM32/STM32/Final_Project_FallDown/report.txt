@@ -1,0 +1,10 @@
+Lab report
+Shengwei Peng
+
+The stay-on-the-bar function, reverse bar, trace recover of the ball and replacement of position when the ball go out. I have the stay on the bar function so the ball will not go through the bar. The reverse bar, which is the red bar,and replacement of position when the ball go out, make the game more playable. And the trace recover will make the screen looks better.
+
+
+I had some problem while passing argument by pointer. First I was confused by when I need to use a point and when I don't.
+And that's cost me a lot of time to fix while an error occurs. The trace recover also took me a lot of time to get it done. Other than that, there are several boards that cannot read a SD card but lcd works, which is confused us and we wasted a lot of time on it. 
+
+I would use image instead of drawing string function for the bar and the ball, which will make it looks a lot better, if I could start it over. 

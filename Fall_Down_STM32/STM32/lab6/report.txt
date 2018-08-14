@@ -1,0 +1,14 @@
+
+Team: Shengwei Peng(pengs), Brandon 
+
+1.The advantage it can put in any line that you want so that if it print that line, then you know the line before print statement works. The disadvantage is that sometimes, it may pass the printf line but it doesn't work propertly, which means you might have a minor mistake in it but the code still works. And it takes so much times if your code is long.
+
+2. spiReadWrite is a function used by SPI to send data. The higher level functions are designed for specific SPI peripherals and how they use the data that is sent/received by spiReadWrite in order to function correctly.
+
+3. Sets the bits on the CS pin to high, which means that there should be no communication.
+
+4. Each character is 5 pixels wide and 7 pixels tall. In glcdfont.c, each pixel line is broken down into hexidecimal numbers that indicate which of the 7 pixels in each of the 5 columns needs to be lit up in order to display a character.
+
+5. the version in lab instruction is faster by  0.016 ms. it is faster beacsue a more efficient route would be to push larger blocks of color to the screen
+
+The difficulties in this lab is that we were messing up some codes in the uart file and we couldn't get the correct axis data. And We were stuck in that step for such a long time. Then we checked every file that we modified from last lab and fixed this problem. Also, the logic analyzer was confusing. I didn't know that we have to use spi setting to test the program.

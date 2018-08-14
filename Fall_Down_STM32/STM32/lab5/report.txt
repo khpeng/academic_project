@@ -1,0 +1,12 @@
+
+Team: Shengwei Peng(pengs), Jiawei Zhang(zhang435)
+
+1.the CS (Chip Select) pin is used to enable the correct device for communication.
+
+2. By setting the CS high at the end of the pin initializations, it means no chip can be seleted.  f3d_gyro_read and f3d_gyro_write set low to high.
+
+3. We are using the wires to hook up multiple peripherals on one SPI bus
+
+4. I set the baud rate prescaler to SPI_BaudRatePrescaler_8. 72/8 = 9 MHz
+
+5. Yes. a peripheral (slave) need to be configured with the transmission speed before it can communicate with the microcontroler. on-the-fly change may be necessary if a bus has two slaves with differing speeds. 

@@ -1,0 +1,56 @@
+/**********************************************************
+* main.c for lab 5
+*
+* Author: Brandon Dennett - bdennett
+*/
+
+#include <f3d_uart.h>
+#include <stdio.h>
+#include <f3d_gyro.h>
+#include <f3d_led.h>
+#include <f3d_user_btn.h>
+
+// Delay function added for button push
+// Stops the program for a second so user has chance to stop pressing button
+void delay(void) {
+  int i = 2000000;
+  while (i-- > 0) {
+    asm("nop"); /* This stops it optimising code out */
+  }
+}
+
+int main(void){
+
+  f3d_led_init();
+  f3d_uart_init();
+  f3d_user_btn_init();
+  int i, c, d = 0;
+
+  
+  while(1){
+    i = i % 2;
+    c = c % 2;
+    if (i == 0) {
+      f3d_led_on(9);
+      d++;
+      if (c == 1) {
+	printf("Printf debugger currently on.\n");
+	printf("Current counter for led flashes: %d\n", d);
+      }
+    } else f3d_led_off(9);
+
+    if (user_btn_read() == 1) {
+      c++;
+      printf("Someone pushed the button.\n");
+    }
+
+    i++;
+    delay();
+  }
+}
+
+void assert_failed(uint8_t* file, uint32_t line) {
+/* Infinite loop */
+/* Use GDB to find out why we're here */
+  while (1);
+}

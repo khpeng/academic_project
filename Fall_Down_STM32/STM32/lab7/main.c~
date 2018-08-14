@@ -1,0 +1,53 @@
+
+
+/********************************************************** 
+ * 
+ *    Main.c
+ * 
+ * 
+ *   Author: Shengwei Peng - pengs
+ *   Date Created: --- 
+ *   Last Modified by: Shengwei Peng
+ *   Date Last Modified: Oct 10 2016
+ *   Assignment: lab7
+ *   Partner:  Brandon Dennett - bdennett 
+ */ 
+
+#include <stm32f30x.h> // Pull in include files for F30x standard drivers
+#include <f3d_uart.h>
+#include <f3d_user_btn.h>
+#include <f3d_lcd_sd.h>
+#include <f3d_i2c.h>
+#include <f3d_accel.h>
+#include <f3d_mag.h>
+#include <stdio.h>
+
+#define TIMER 20000
+
+int main(void) {
+   setvbuf(stdin, NULL, _IONBF, 0);
+   setvbuf(stdout, NULL, _IONBF, 0);
+   setvbuf(stderr, NULL, _IONBF, 0);
+
+  // Set up your inits before you go ahead
+  f3d_i2c1_init();
+  delay(10);
+  f3d_accel_init();
+  delay(10);
+  f3d_mag_init();
+  delay(10);
+
+while(1);
+}
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t* file, uint32_t line) {
+/* Infinite loop */
+/* Use GDB to find out why we're here */
+  while (1);
+}
+#endif
+
+/* main.c ends here */
+
+

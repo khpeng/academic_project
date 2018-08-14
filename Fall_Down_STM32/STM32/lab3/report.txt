@@ -1,0 +1,20 @@
+// Team: pengs, daozlv and wang314
+// name : Shengwei Peng, Daozhen Lv and Jun Wang
+
+1.  I am using the flash and RAM of the board. 
+2. GPIO stand for General-purpose input/output.
+3. I am not sure about this question. But my teamate told me that the provided delay function accurate.
+4. port R44 R43.
+   Pin 11 and pin 15.
+5. I am not pretty sure about the public attributes but I google it. And it showed the result:
+
+Public Attributes
+
+uint32_t 	GPIO_Pin
+GPIOMode_TypeDef 	GPIO_Mode
+GPIOSpeed_TypeDef 	GPIO_Speed
+GPIOOType_TypeDef 	GPIO_OType
+GPIOPuPd_TypeDef 	GPIO_PuPd
+
+
+Yes, the 4.1 f3d_led.c initial part was pretty confused. However, I found out that most of the function are provieded in the previous section and all I have to do is read the document manual and the lab instructions.

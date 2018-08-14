@@ -1,0 +1,29 @@
+ * 
+ *   Author: Shengwei Peng (pengs)
+     Partner: Samuel Eleftheri (Selefthe)
+ *   Date Created: 9/19/2016
+ *   Last Modified by: 9/19/2016-
+ *   Assignment: lab4 
+
+
+1.How many connections are required to communicate over UART?
+2 connections : pc5 to tx,
+    		  pc4 to rx
+
+2.What is the purpose of "alternate functions" for GPIO pins?
+THe purpose of "alternate functions" for GPIO pins is to change certain pin to perform a different action.
+
+3.Define "baud rate" in your own words.
+The rate that show how many bites we can transfer in a communication channel per second. 
+
+4.why do we need newlib_stubs? Specifically, is there a reason that printf won't work on the board without it?
+We need newlib_stubs to utilize the functions that we need. As I see it, it acts like a library for the board. And without it, the system wouldn't recognize the prinf function. 
+
+
+5.Give an example of a situation in which the Salae Logic Analyzer is the best debugging method and include a screen shot of the Logic application.
+ it provide visibility into what the hardware is actually doing.
+ Screenshot file is inside of lab4.
+
+6/ what did I learn and the diffculties.
+The most difficult part is the last part, part 8. We were having trouble with the cat filename -| serial T part. We had the wc part working which is working through the board. However, when we test our program through a text file, it just doesn't write anything inside of the file.
+Through the part 7, I learned that we need to create a file or library to provide functions that allows the board to recognize how to handle the typically services or functions.
